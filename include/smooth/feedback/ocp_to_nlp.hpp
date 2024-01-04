@@ -27,18 +27,18 @@ auto ocp_nlp_structure(const FlatOCPType auto & ocp, const MeshType auto & mesh)
 
   // variable layout
   std::array<std::size_t, 4> var_len{
-    1,                 // tf
-    ocp.Nq,            // integrals
-    ocp.Nx * (N + 1),  // states
-    ocp.Nu * N,        // inputs
+    1,                                      // tf
+    static_cast<size_t>(ocp.Nq),            // integrals
+    static_cast<size_t>(ocp.Nx * (N + 1)),  // states
+    static_cast<size_t>(ocp.Nu * N),        // inputs
   };
 
   // constraint layout
   std::array<std::size_t, 4> con_len{
-    ocp.Nx * N,   // derivatives
-    ocp.Nq,       // other integrals
-    ocp.Ncr * N,  // running constraints
-    ocp.Nce,      // end constraints
+    static_cast<size_t>(ocp.Nx * N),   // derivatives
+    static_cast<size_t>(ocp.Nq),       // other integrals
+    static_cast<size_t>(ocp.Ncr * N),  // running constraints
+    static_cast<size_t>(ocp.Nce),      // end constraints
   };
 
   std::array<std::size_t, 5> var_beg{0};
